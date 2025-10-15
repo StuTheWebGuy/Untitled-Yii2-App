@@ -7,3 +7,18 @@ services:
       - ./:/app:delegated
     ports:
       - '8000:80'
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: yii2basic
+      MYSQL_USER: yii2basic
+      MYSQL_PASSWORD: yii2basic
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
