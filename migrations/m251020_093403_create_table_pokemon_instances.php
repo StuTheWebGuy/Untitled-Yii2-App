@@ -7,7 +7,8 @@ use yii\db\Migration;
  *
  * stores a pokemon instance with data about that species, and how it is specifically configured by the user
  *
- * @todo add validation for team_id XOR box_id
+ * -
+ * @todo add validation for custom constraint 'team_id XOR box_id'
  */
 class m251020_093403_create_table_pokemon_instances extends Migration
 
