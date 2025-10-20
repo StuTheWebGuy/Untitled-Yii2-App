@@ -7,8 +7,7 @@ use yii\db\Migration;
  *
  * stores a pokemon instance with data about that species, and how it is specifically configured by the user
  *
- * -
- * @todo add validation for custom constraint 'team_id XOR box_id'
+ * - @todo add validation for custom constraint 'team_id XOR box_id'
  */
 class m251020_093403_create_table_pokemon_instances extends Migration
 
@@ -18,7 +17,6 @@ class m251020_093403_create_table_pokemon_instances extends Migration
      */
     public function safeUp()
     {
-        $this->dropTable('{{%pokemon_instances}}');
         $this->createTable('{{%pokemon_instances}}', [
             'id' => $this->primaryKey(),
             'team_id' => $this->integer(),
@@ -76,6 +74,6 @@ class m251020_093403_create_table_pokemon_instances extends Migration
         $this->dropForeignKey('fk-pokemon_instances-box_id', '{{%pokemon_instances}}');
         $this->dropForeignKey('fk-pokemon_instances-team_id', '{{%pokemon_instances}}');
         $this->dropForeignKey('fk-pokemon_instances-pokemon_species_id', '{{%pokemon_instances}}');
-        $this->dropTable('{{%teams}}');
+        $this->dropTable('{{%pokemon_instances}}');
     }
 }

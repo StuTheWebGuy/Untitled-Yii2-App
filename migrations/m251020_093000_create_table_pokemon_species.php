@@ -8,6 +8,8 @@ use yii\db\Migration;
  *
  * stores all pokemon species from pokeAPI
  *
+ * - @todo write script to preload from pokeAPI
+ *
  * @note should not be written to during runtime - only preloaded with cronjob / manually
  */
 class m251020_093000_create_table_pokemon_species extends Migration
