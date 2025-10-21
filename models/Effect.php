@@ -13,7 +13,7 @@ use Yii;
  *
  * @property EffectsImmunity[] $effectsImmunities
  * @property Immunity[] $immunities
- * @property MovesEffect[] $movesEffects
+ * @property MoveEffect[] $moveEffects
  */
 class Effect extends \yii\db\ActiveRecord
 {
@@ -72,13 +72,13 @@ class Effect extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[MovesEffects]].
+     * Gets query for [[MoveEffects]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMovesEffects()
+    public function getMoveEffects()
     {
-        return $this->hasMany(MovesEffect::class, ['effect_id' => 'id']);
+        return $this->hasMany(MoveEffect::class, ['effect_id' => 'id']);
     }
 
 }

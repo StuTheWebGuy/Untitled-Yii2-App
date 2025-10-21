@@ -14,7 +14,7 @@ use Yii;
  * @property string|null $description
  * @property int|null $accuracy
  *
- * @property MovesEffect[] $movesEffects
+ * @property MoveEffect[] $moveEffects
  * @property PokemonInstance[] $pokemonInstances
  * @property PokemonMove[] $pokemonMoves
  */
@@ -60,13 +60,13 @@ class Move extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[MovesEffects]].
+     * Gets query for [[MoveEffects]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMovesEffects()
+    public function getMoveEffects()
     {
-        return $this->hasMany(MovesEffect::class, ['move_id' => 'id']);
+        return $this->hasMany(MoveEffect::class, ['move_id' => 'id']);
     }
 
     /**

@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int|null $percent_chance
  *
- * @property MovesEffect[] $movesEffects
+ * @property MoveEffect[] $moveEffects
  */
 class Chance extends \yii\db\ActiveRecord
 {
@@ -47,13 +47,13 @@ class Chance extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[MovesEffects]].
+     * Gets query for [[MoveEffects]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMovesEffects()
+    public function getMoveEffects()
     {
-        return $this->hasMany(MovesEffect::class, ['chance_id' => 'id']);
+        return $this->hasMany(MoveEffect::class, ['chance_id' => 'id']);
     }
 
 }

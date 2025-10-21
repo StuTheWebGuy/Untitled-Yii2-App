@@ -18,8 +18,8 @@ use Yii;
  * @property Immunity[] $immunities
  * @property Type[] $opponentTypes
  * @property Type[] $opponentTypes0
- * @property PokemonSpecy[] $pokemonSpecies
- * @property PokemonSpecy[] $pokemonSpecies0
+ * @property PokemonSpecies[] $pokemonSpecies
+ * @property PokemonSpecies[] $pokemonSpecies0
  * @property PokemonType[] $pokemonTypes
  * @property PokemonType[] $pokemonTypes0
  * @property Type[] $userTypes
@@ -139,7 +139,7 @@ class Type extends \yii\db\ActiveRecord
      */
     public function getPokemonSpecies()
     {
-        return $this->hasMany(PokemonSpecy::class, ['id' => 'pokemon_species_id'])->viaTable('pokemon_types', ['type_id' => 'id']);
+        return $this->hasMany(PokemonSpecies::class, ['id' => 'pokemon_species_id'])->viaTable('pokemon_types', ['type_id' => 'id']);
     }
 
     /**
@@ -149,7 +149,7 @@ class Type extends \yii\db\ActiveRecord
      */
     public function getPokemonSpecies0()
     {
-        return $this->hasMany(PokemonSpecy::class, ['id' => 'pokemon_species_id'])->viaTable('pokemon_types', ['type_id' => 'id']);
+        return $this->hasMany(PokemonSpecies::class, ['id' => 'pokemon_species_id'])->viaTable('pokemon_types', ['type_id' => 'id']);
     }
 
     /**

@@ -10,7 +10,7 @@ use Yii;
  * @property int $type_id
  * @property int $pokemon_species_id
  *
- * @property PokemonSpecy $pokemonSpecies
+ * @property PokemonSpecies $pokemonSpecies
  * @property Type $type
  * @property Type $type0
  */
@@ -36,7 +36,7 @@ class PokemonType extends \yii\db\ActiveRecord
             [['type_id', 'pokemon_species_id'], 'integer'],
             [['type_id', 'pokemon_species_id'], 'unique', 'targetAttribute' => ['type_id', 'pokemon_species_id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::class, 'targetAttribute' => ['type_id' => 'id']],
-            [['pokemon_species_id'], 'exist', 'skipOnError' => true, 'targetClass' => PokemonSpecy::class, 'targetAttribute' => ['pokemon_species_id' => 'id']],
+            [['pokemon_species_id'], 'exist', 'skipOnError' => true, 'targetClass' => PokemonSpecies::class, 'targetAttribute' => ['pokemon_species_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::class, 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
@@ -59,7 +59,7 @@ class PokemonType extends \yii\db\ActiveRecord
      */
     public function getPokemonSpecies()
     {
-        return $this->hasOne(PokemonSpecy::class, ['id' => 'pokemon_species_id']);
+        return $this->hasOne(PokemonSpecies::class, ['id' => 'pokemon_species_id']);
     }
 
     /**

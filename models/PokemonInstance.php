@@ -16,7 +16,7 @@ use Yii;
  * @property Box $box
  * @property Move[] $moves
  * @property PokemonMove[] $pokemonMoves
- * @property PokemonSpecy $pokemonSpecies
+ * @property PokemonSpecies $pokemonSpecies
  * @property Team $team
  */
 class PokemonInstance extends \yii\db\ActiveRecord
@@ -41,7 +41,7 @@ class PokemonInstance extends \yii\db\ActiveRecord
             [['team_id', 'box_id', 'pokemon_species_id'], 'integer'],
             [['custom_name'], 'string', 'max' => 255],
             [['box_id'], 'exist', 'skipOnError' => true, 'targetClass' => Box::class, 'targetAttribute' => ['box_id' => 'id']],
-            [['pokemon_species_id'], 'exist', 'skipOnError' => true, 'targetClass' => PokemonSpecy::class, 'targetAttribute' => ['pokemon_species_id' => 'id']],
+            [['pokemon_species_id'], 'exist', 'skipOnError' => true, 'targetClass' => PokemonSpecies::class, 'targetAttribute' => ['pokemon_species_id' => 'id']],
             [['team_id'], 'exist', 'skipOnError' => true, 'targetClass' => Team::class, 'targetAttribute' => ['team_id' => 'id']],
         ];
     }
@@ -97,7 +97,7 @@ class PokemonInstance extends \yii\db\ActiveRecord
      */
     public function getPokemonSpecies()
     {
-        return $this->hasOne(PokemonSpecy::class, ['id' => 'pokemon_species_id']);
+        return $this->hasOne(PokemonSpecies::class, ['id' => 'pokemon_species_id']);
     }
 
     /**

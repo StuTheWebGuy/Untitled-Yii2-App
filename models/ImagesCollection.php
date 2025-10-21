@@ -13,7 +13,7 @@ use Yii;
  * @property string|null $image32
  * @property string|null $image64
  *
- * @property PokemonSpecy[] $pokemonSpecies
+ * @property PokemonSpecies[] $pokemonSpecies
  */
 class ImagesCollection extends \yii\db\ActiveRecord
 {
