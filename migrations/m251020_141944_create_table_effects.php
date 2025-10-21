@@ -18,7 +18,7 @@ class m251020_141944_create_table_effects extends Migration
             'id' => $this->primaryKey(),
 
             'name' => $this->string()->notNull(),
-            'effect_lookup' => $this->integer(),
+            'description' => $this->text()->notNull(),
         ]);
     }
 
