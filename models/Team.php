@@ -30,6 +30,7 @@ class Team extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+        /** @todo add category id relation & rules */
         return [
             [['category_id'], 'default', 'value' => null],
             [['category_id'], 'integer'],
