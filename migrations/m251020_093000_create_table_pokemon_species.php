@@ -21,9 +21,10 @@ class m251020_093000_create_table_pokemon_species extends Migration
     {
         $this->createTable('{{%pokemon_species}}', [
             'id' => $this->primaryKey(),
-            'images_collection_id' => $this->integer()->notNull(),
+            'images_collection_id' => $this->integer(),
 
             'name' => $this->string(255)->notNull(),
+            'url' => $this->string(255)->notNull()->unique(),
         ]);
 
         /**

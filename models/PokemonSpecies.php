@@ -14,4 +14,6 @@ class PokemonSpecies extends ActiveRecord
     {
         return '{{%pokemon_species}}';
     }
+
+    // todo: add validation
 }
