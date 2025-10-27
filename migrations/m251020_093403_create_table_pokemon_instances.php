@@ -22,6 +22,7 @@ class m251020_093403_create_table_pokemon_instances extends Migration
             'team_id' => $this->integer(),
             'box_id' => $this->integer(),
             'pokemon_species_id' => $this->integer(),
+            'format_id' => $this->integer(),
 
             'custom_name' => $this->string(255),
         ]);
@@ -60,6 +61,19 @@ class m251020_093403_create_table_pokemon_instances extends Migration
             '{{%pokemon_instances}}',
             'pokemon_species_id',
             '{{%pokemon_species}}',
+            'id',
+            'CASCADE',
+            'CASCADE'
+        );
+
+        /**
+         * format_id FK
+         */
+        $this->addForeignKey(
+            'fk-pokemon_instances-format_id',
+            '{{%pokemon_instances}}',
+            'format_id',
+            '{{%formats}}',
             'id',
             'CASCADE',
             'CASCADE'

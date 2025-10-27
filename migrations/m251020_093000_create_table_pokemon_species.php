@@ -24,7 +24,6 @@ class m251020_093000_create_table_pokemon_species extends Migration
             'images_collection_id' => $this->integer()->notNull(),
 
             'name' => $this->string(255)->notNull(),
-            'description' => $this->text()->notNull(),
         ]);
 
         /**

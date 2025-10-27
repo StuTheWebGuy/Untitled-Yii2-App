@@ -1,5 +1,8 @@
 <?php
 
+use yii\caching\FileCache;
+use yii\log\FileTarget;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -15,17 +18,20 @@ $config = [
     ],
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => FileCache::class,
         ],
         'log' => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],
         ],
         'db' => $db,
+        'httpclient' => [
+            'class' => 'yii\httpclient\Client',
+        ],
     ],
     'params' => $params,
     /*
@@ -49,7 +55,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 }
 
