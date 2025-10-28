@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use yii\rest\ActiveController;
 
-class formatController extends ActiveController
+class ImagesCollectionsController extends ActiveController
 {
 
 }

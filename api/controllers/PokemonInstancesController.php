@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use yii\rest\ActiveController;
 
-class categoriesController extends ActiveController
+class PokemonInstancesController extends activeController
 {
 
 }

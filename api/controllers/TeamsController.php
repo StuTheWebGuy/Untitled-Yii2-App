@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\models\Team;
 use Yii;
-use yii\rest\Controller;
+use app\rest\Controller;
 
 class TeamsController extends Controller
 {
