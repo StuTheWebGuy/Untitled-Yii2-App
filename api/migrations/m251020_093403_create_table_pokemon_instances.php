@@ -83,11 +83,12 @@ class m251020_093403_create_table_pokemon_instances extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropForeignKey('fk-pokemon_instances-box_id', '{{%pokemon_instances}}');
         $this->dropForeignKey('fk-pokemon_instances-team_id', '{{%pokemon_instances}}');
         $this->dropForeignKey('fk-pokemon_instances-pokemon_species_id', '{{%pokemon_instances}}');
+        $this->dropForeignKey('fk-pokemon_instances-format_id', '{{%pokemon_instances}}');
         $this->dropTable('{{%pokemon_instances}}');
     }
 }

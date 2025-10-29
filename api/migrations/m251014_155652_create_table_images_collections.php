@@ -13,7 +13,7 @@ class m251014_155652_create_table_images_collections extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%images_collections}}', [
             'id' => $this->primaryKey(),
@@ -28,9 +28,8 @@ class m251014_155652_create_table_images_collections extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
-        $this->dropForeignKey('fk-pokemon_species-images_collection_id', '{{%pokemon_species}}');
-        $this->dropTable('{{%pokemon_species}}');
+        $this->dropTable('{{%images_collections}}');
     }
 }

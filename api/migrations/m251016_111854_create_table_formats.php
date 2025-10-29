@@ -12,7 +12,7 @@ class m251016_111854_create_table_formats extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%formats}}', [
             'id' => $this->primaryKey(),
@@ -27,7 +27,7 @@ class m251016_111854_create_table_formats extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTable('{{%formats}}');
     }

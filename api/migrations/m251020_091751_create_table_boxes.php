@@ -12,7 +12,7 @@ class m251020_091751_create_table_boxes extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%boxes}}', [
             'id' => $this->primaryKey(),
@@ -30,7 +30,7 @@ class m251020_091751_create_table_boxes extends Migration
             'category_id',
             '{{%categories}}',
             'id',
-            'CASCADE', // Not sure whether deleting a category should delete the boxes inside
+            'SET NULL',
             'CASCADE'
         );
     }
@@ -38,7 +38,7 @@ class m251020_091751_create_table_boxes extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropForeignKey('fk-boxes-category_id', '{{%boxes}}');
         $this->dropTable('{{%boxes}}');

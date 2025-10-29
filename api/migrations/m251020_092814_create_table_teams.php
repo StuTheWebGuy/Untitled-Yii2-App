@@ -12,7 +12,7 @@ class m251020_092814_create_table_teams extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%teams}}', [
             'id' => $this->primaryKey(),
@@ -30,7 +30,7 @@ class m251020_092814_create_table_teams extends Migration
             'category_id',
             '{{%categories}}',
             'id',
-            'CASCADE', // Not sure whether deleting a category should delete the teams inside
+            'SET NULL',
             'CASCADE'
         );
     }
@@ -38,7 +38,7 @@ class m251020_092814_create_table_teams extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropForeignKey('fk-teams-category_id', '{{%boxes}}');
         $this->dropTable('{{%teams}}');

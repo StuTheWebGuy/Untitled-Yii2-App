@@ -12,7 +12,7 @@ class m251020_090412_create_table_categories extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%categories}}', [
             'id' => $this->primaryKey(),
@@ -32,15 +32,16 @@ class m251020_090412_create_table_categories extends Migration
             '{{%users}}',
             'id',
             'CASCADE',
-            'CASCADE'
+            'SET NULL'
         );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
+        $this->dropForeignKey('fk-categories-user_id', '{{%categories}}');
         $this->dropTable('{{%categories}}');
     }
 }
