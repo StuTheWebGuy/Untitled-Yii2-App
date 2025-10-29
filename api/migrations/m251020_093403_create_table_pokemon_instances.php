@@ -15,7 +15,7 @@ class m251020_093403_create_table_pokemon_instances extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%pokemon_instances}}', [
             'id' => $this->primaryKey(),
