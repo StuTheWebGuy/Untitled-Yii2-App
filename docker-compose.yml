@@ -12,7 +12,9 @@ services:
     volumes:
       - ./api:/var/www
     ports:
-      - '8000:80'
+      - '127.0.0.1:8000:80'
+    networks:
+      - default
 
   mysql:
     image: mysql:8.0
@@ -22,9 +24,15 @@ services:
       MYSQL_USER: yii2basic
       MYSQL_PASSWORD: yii2basic
     ports:
-      - '3306:3306'
+      - '127.0.0.1:3306:3306'
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - default
 
 volumes:
   mysql-data:
+
+networks:
+  default:
+    driver: bridge
