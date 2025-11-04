@@ -17,6 +17,7 @@ class m251020_091751_create_table_boxes extends Migration
         $this->createTable('{{%boxes}}', [
             'id' => $this->primaryKey(),
             'category_id' => $this->integer(),
+            'user_id' => $this->integer(),
 
             'name' => $this->string(255)->notNull(),
         ]);
@@ -33,6 +34,19 @@ class m251020_091751_create_table_boxes extends Migration
             'SET NULL',
             'CASCADE'
         );
+
+        /**
+         * user_id FK
+         */
+        $this->addForeignKey(
+            'fk-boxes-user_id',
+            '{{%boxes}}',
+            'user_id',
+            '{{%users}}',
+            'id',
+            'CASCADE',
+            'SET NULL'
+        );
     }
 
     /**
@@ -41,6 +55,7 @@ class m251020_091751_create_table_boxes extends Migration
     public function safeDown(): void
     {
         $this->dropForeignKey('fk-boxes-category_id', '{{%boxes}}');
+        $this->dropForeignKey('fk-boxes-user_id', '{{%boxes}}');
         $this->dropTable('{{%boxes}}');
     }
 }

@@ -17,6 +17,7 @@ class m251020_092814_create_table_teams extends Migration
         $this->createTable('{{%teams}}', [
             'id' => $this->primaryKey(),
             'category_id' => $this->integer(),
+            'user_id' => $this->integer(),
 
             'name' => $this->string(255)->notNull(),
         ]);
@@ -26,12 +27,25 @@ class m251020_092814_create_table_teams extends Migration
          */
         $this->addForeignKey(
             'fk-teams-category_id',
-            '{{%boxes}}',
+            '{{%teams}}',
             'category_id',
             '{{%categories}}',
             'id',
             'SET NULL',
             'CASCADE'
+        );
+
+        /**
+         * user_id FK
+         */
+        $this->addForeignKey(
+            'fk-teams-user_id',
+            '{{%teams}}',
+            'user_id',
+            '{{%users}}',
+            'id',
+            'CASCADE',
+            'SET NULL'
         );
     }
 
@@ -40,7 +54,8 @@ class m251020_092814_create_table_teams extends Migration
      */
     public function safeDown(): void
     {
-        $this->dropForeignKey('fk-teams-category_id', '{{%boxes}}');
+        $this->dropForeignKey('fk-teams-category_id', '{{%teams}}');
+        $this->dropForeignKey('fk-teams-user_id', '{{%teams}}');
         $this->dropTable('{{%teams}}');
     }
 }
