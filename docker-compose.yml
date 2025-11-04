@@ -4,7 +4,7 @@ services:
     working_dir: /var/www
     environment:
       APACHE_DOCUMENT_ROOT: /var/www/web
-      PHP_EXTENSIONS: xdebug
+      PHP_EXTENSIONS: intl xdebug
       PHP_INI_XDEBUG__CLIENT_HOST: host.docker.internal
       PHP_INI_XDEBUG__MODE: develop,debug
       PHP_INI_XDEBUG__START_WITH_REQUEST: yes
