@@ -10,9 +10,8 @@ services:
       APACHE_DOCUMENT_ROOT: /var/www/web
       PHP_EXTENSION_XDEBUG: 1
       PHP_INI_XDEBUG__IDEKEY: docker
-      #      PHP_IDE_CONFIG:
     volumes:
-      - ./:/var/www
+      - ./api:/var/www
     ports:
       - '8000:80'
 
