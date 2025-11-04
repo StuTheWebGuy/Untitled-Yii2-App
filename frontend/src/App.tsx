@@ -1,22 +1,23 @@
-import { useState } from "react";
+import { Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import Test from './pages/Test.tsx'
+import Categories from './pages/Categories.tsx'
 
-export default function BackendTest() {
-  const [response, setResponse] = useState<string>("");
-
-  async function testBackend() {
-    try {
-      const res = await fetch("http://127.0.0.1:8000/health/check");
-      const json = await res.json();
-      setResponse(JSON.stringify(json));
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
+function App() {
   return (
     <div>
-      <button onClick={testBackend}>Test</button>
-      <pre>{response}</pre>
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/Test">Test</Link> |{' '}
+        <Link to="/Categories">Categories</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Test" element={<Test />} />
+        <Route path="/Test" element={<Categories />} />
+      </Routes>
     </div>
-  );
+  )
 }
+
+export default App
