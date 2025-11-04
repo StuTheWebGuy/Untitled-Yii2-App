@@ -1,4 +1,3 @@
-version: '2'
 services:
   php:
     image: thecodingmachine/php:8.4-v5-apache
