@@ -6,8 +6,10 @@ $name = env('DB_NAME');
 $user = env('DB_USER');
 $password = env('DB_PASSWORD');
 
+use yii\db\Connection;
+
 return [
-    'class' => 'yii\db\Connection',
+    'class' => Connection::class,
     'dsn' => "mysql:host={$host};port={$port};dbname={$name}",
     'username' => $user,
     'password' => $password,
