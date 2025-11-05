@@ -17,6 +17,7 @@ class Team extends ActiveRecord
 {
     /**
      * @inheritdoc
+     * @return string table name
      */
     public static function tableName(): string
     {
