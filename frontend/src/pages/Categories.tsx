@@ -1,0 +1,34 @@
+export default function Categories() {
+  const BASE_URL = 'http://127.0.0.1:8000/'
+  async function createNewCategory() {
+    const userId: number = 1 // (placeholder) todo: get userId of currently logged in user / localstorage
+    const userTeamCount: number = await (
+      await fetch(`${BASE_URL}/categories/users-count?userId=${userId}`)
+    ).json()
+
+    await fetch(`${BASE_URL}/categories/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: userId,
+        name: `Untitled Category ${userTeamCount}`,
+        created_at: new Date(),
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => console.log(err))
+  }
+
+  return (
+    <div>
+      <h1>Home Page</h1>
+
+      <button onClick={createNewCategory}>Create a Category</button>
+    </div>
+  )
+}
