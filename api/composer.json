@@ -49,7 +49,8 @@
             "yii\\composer\\Installer::postCreateProject",
             "yii\\composer\\Installer::postInstall"
         ],
-        "phpcs": "phpcs"
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf"
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {

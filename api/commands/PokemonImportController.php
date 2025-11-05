@@ -28,12 +28,11 @@ class PokemonImportController extends Controller
             // add to database
             foreach ($data['results'] as $pokemon) {
                 try {
-
                     $species = new PokemonSpecies();
                     $species->name = $pokemon['name'];
                     $species->url = $pokemon['url'];
-                    if(!$species->save()) {
-                        $this->stderr($pokemon['name'] . " (FAILED): ". json_encode($species->errors, JSON_THROW_ON_ERROR) . "\n");
+                    if (!$species->save()) {
+                        $this->stderr($pokemon['name'] . " (FAILED): " . json_encode($species->errors, JSON_THROW_ON_ERROR) . "\n");
                     } else {
                         $this->stdout($pokemon['name'] . "\n");
                     }
