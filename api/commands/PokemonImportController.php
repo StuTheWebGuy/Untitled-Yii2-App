@@ -4,12 +4,29 @@ namespace app\commands;
 
 use app\models\PokemonSpecies;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\httpclient\Client;
 use yii\console\ExitCode;
+use yii\httpclient\Exception;
 
+/**
+ * Class PokemonImportController.
+ *
+ * API for importing pokemon data from https://pokeapi.co/api/v2/
+ */
 class PokemonImportController extends Controller
 {
+    /**
+     * Fetches a list of all pokemon from the external api and adds them to the database as a `PokemonSpecies` record
+     *
+     * @return integer
+     *
+     * @throws InvalidConfigException If the HTTP client is improperly configured.
+     * @throws Exception If the HTTP request to the external API fails.
+     * @throws \Throwable If saving a `PokemonSpecies` record fails due to validation errors or other unexpected issues.
+     * @see PokemonSpecies
+     */
     public function actionFetch(): int
     {
         $client = new Client([
