@@ -1,10 +1,16 @@
 <?php
 
+$host = env('DB_HOST');
+$port = env('DB_PORT');
+$name = env('DB_NAME');
+$user = env('DB_USER');
+$password = env('DB_PASSWORD');
+
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => "mysql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_NAME']}",
-    'username' => $_ENV['DB_USER'],
-    'password' => $_ENV['DB_PASSWORD'],
+    'dsn' => "mysql:host={$host};port={$port};dbname={$name}",
+    'username' => $user,
+    'password' => $password,
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
