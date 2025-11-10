@@ -11,4 +11,14 @@ class Category extends ActiveRecord
     {
         return '{{%categories}}';
     }
+
+    public function rules(): array
+    {
+        return [
+            [
+                ['user_id', 'name', 'created_at'],
+                'safe'
+            ],
+        ];
+    }
 }

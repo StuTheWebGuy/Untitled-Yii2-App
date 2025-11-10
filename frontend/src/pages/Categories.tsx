@@ -1,5 +1,5 @@
 export default function Categories() {
-  const BASE_URL = 'http://127.0.0.1:8000/'
+  const BASE_URL = 'http://127.0.0.1:8000'
   async function createNewCategory() {
     const userId: number = 1 // (placeholder) todo: get userId of currently logged in user / localstorage
     const userTeamCount: number = await (
@@ -26,8 +26,6 @@ export default function Categories() {
 
   return (
     <div>
-      <h1>Home Page</h1>
-
       <button onClick={createNewCategory}>Create a Category</button>
     </div>
   )
