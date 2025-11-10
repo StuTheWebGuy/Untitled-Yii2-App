@@ -10,7 +10,6 @@ use yii\db\Migration;
  * - @todo add validation for custom constraint 'team_id XOR box_id'
  */
 class m251020_093403_create_table_pokemon_instances extends Migration
-
 {
     /**
      * {@inheritdoc}

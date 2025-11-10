@@ -1,17 +1,19 @@
+namespace: tests
+support_namespace: support
 actor: Tester
 bootstrap: _bootstrap.php
 paths:
-    tests: tests
-    output: tests/_output
-    data: tests/_data
-    helpers: tests/_support
+  tests: tests
+  output: tests/_output
+  data: tests/_data
+  helpers: tests/support
 settings:
-    memory_limit: 1024M
-    colors: true
+  memory_limit: 1024M
+  colors: true
 modules:
-    config:
-        Yii2:
-            configFile: 'config/test.php'
+  config:
+    Yii2:
+      configFile: 'config/test.php'
 
 # To enable code coverage:
 #coverage:

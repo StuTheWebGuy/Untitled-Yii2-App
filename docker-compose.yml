@@ -1,20 +1,20 @@
-version: '2'
 services:
   php:
     image: thecodingmachine/php:8.4-v5-apache
     working_dir: /var/www
     environment:
+      APACHE_DOCUMENT_ROOT: /var/www/web
+      PHP_EXTENSIONS: intl xdebug
       PHP_INI_XDEBUG__CLIENT_HOST: host.docker.internal
       PHP_INI_XDEBUG__MODE: develop,debug
       PHP_INI_XDEBUG__START_WITH_REQUEST: yes
-      APACHE_DOCUMENT_ROOT: /var/www/web
-      PHP_EXTENSION_XDEBUG: 1
       PHP_INI_XDEBUG__IDEKEY: docker
-      #      PHP_IDE_CONFIG:
     volumes:
-      - ./:/var/www
+      - ./api:/var/www
     ports:
-      - '8000:80'
+      - '127.0.0.1:8000:80'
+    networks:
+      - default
 
   mysql:
     image: mysql:8.0
@@ -24,9 +24,15 @@ services:
       MYSQL_USER: yii2basic
       MYSQL_PASSWORD: yii2basic
     ports:
-      - '3306:3306'
+      - '127.0.0.1:3306:3306'
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - default
 
 volumes:
   mysql-data:
+
+networks:
+  default:
+    driver: bridge
