@@ -12,13 +12,12 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property int $user_id
  * @property string $name
- * @property string  $created_at
+ * @property string $created_at
  */
 class Category extends ActiveRecord
 {
     /**
-     * @inheritdoc
-     * @return string table name
+     * {@inheritdoc}
      */
     public static function tableName(): string
     {

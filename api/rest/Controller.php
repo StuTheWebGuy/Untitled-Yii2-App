@@ -14,9 +14,7 @@ use yii\filters\Cors;
 class Controller extends \yii\rest\Controller
 {
     /**
-     * @inheritdoc
-     *
-     * @return array List of behaviours being changed
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {

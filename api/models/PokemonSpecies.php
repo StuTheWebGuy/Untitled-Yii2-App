@@ -12,13 +12,12 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property int $images_collection_id
  * @property string $name
- * @property string url
+ * @property string $url
  */
 class PokemonSpecies extends ActiveRecord
 {
     /**
-     * @inheritdoc
-     * @return string table name
+     * {@inheritdoc}
      */
     public static function tableName(): string
     {

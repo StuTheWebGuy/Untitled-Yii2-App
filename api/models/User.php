@@ -9,6 +9,10 @@ use yii\db\ActiveRecord;
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
+    /**
+     * @var mixed|null
+     */
+    private static mixed $users;
     public $id;
     public $username;
     public $password;

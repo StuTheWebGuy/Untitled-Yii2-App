@@ -3,6 +3,7 @@
 namespace app\commands;
 
 use app\models\PokemonSpecies;
+use Throwable;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
@@ -24,7 +25,6 @@ class PokemonImportController extends Controller
      *
      * @throws InvalidConfigException If the HTTP client is improperly configured.
      * @throws Exception If the HTTP request to the external API fails.
-     * @throws \Throwable If saving a `PokemonSpecies` record fails due to validation errors or other unexpected issues.
      * @see PokemonSpecies
      */
     public function actionFetch(): int
@@ -53,7 +53,7 @@ class PokemonImportController extends Controller
                     } else {
                         $this->stdout($pokemon['name'] . "\n");
                     }
-                } catch (\Throwable $e) {
+                } catch (Throwable $e) {
                     Yii::error($e->getMessage());
                     $this->stderr($e->getMessage() . "\n");
                 }

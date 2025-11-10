@@ -16,8 +16,7 @@ use yii\db\ActiveRecord;
 class Box extends ActiveRecord
 {
     /**
-     * @inheritdoc
-     * @return string table name
+     * {@inheritdoc}
      */
     public static function tableName(): string
     {
