@@ -3,13 +3,30 @@
 namespace app\commands;
 
 use app\models\PokemonSpecies;
+use Throwable;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\httpclient\Client;
 use yii\console\ExitCode;
+use yii\httpclient\Exception;
 
+/**
+ * Class PokemonImportController.
+ *
+ * API for importing pokemon data from https://pokeapi.co/api/v2/
+ */
 class PokemonImportController extends Controller
 {
+    /**
+     * Fetches a list of all pokemon from the external api and adds them to the database as a `PokemonSpecies` record
+     *
+     * @return integer
+     *
+     * @throws InvalidConfigException If the HTTP client is improperly configured.
+     * @throws Exception If the HTTP request to the external API fails.
+     * @see PokemonSpecies
+     */
     public function actionFetch(): int
     {
         $client = new Client([
@@ -28,16 +45,15 @@ class PokemonImportController extends Controller
             // add to database
             foreach ($data['results'] as $pokemon) {
                 try {
-
                     $species = new PokemonSpecies();
                     $species->name = $pokemon['name'];
                     $species->url = $pokemon['url'];
-                    if(!$species->save()) {
-                        $this->stderr($pokemon['name'] . " (FAILED): ". json_encode($species->errors, JSON_THROW_ON_ERROR) . "\n");
+                    if (!$species->save()) {
+                        $this->stderr($pokemon['name'] . " (FAILED): " . json_encode($species->errors, JSON_THROW_ON_ERROR) . "\n");
                     } else {
                         $this->stdout($pokemon['name'] . "\n");
                     }
-                } catch (\Throwable $e) {
+                } catch (Throwable $e) {
                     Yii::error($e->getMessage());
                     $this->stderr($e->getMessage() . "\n");
                 }

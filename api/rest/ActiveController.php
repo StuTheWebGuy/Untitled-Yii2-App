@@ -9,15 +9,26 @@ use yii\helpers\ArrayHelper;
 use yii\rest\Serializer;
 use yii\web\Response;
 
+/**
+ * Class ActiveController
+ *
+ * Extends yii2's ActiveController class to add functionality.
+ *
+ * - Adds Cors handling
+ */
 class ActiveController extends \yii\rest\ActiveController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $serializer = [
         'class' => Serializer::class,
         'collectionEnvelope' => 'items',
     ];
+
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors(): array
     {
         return [

@@ -7,8 +7,18 @@ use yii\filters\Cors;
 use app\rest\Controller;
 use yii\web\Response;
 
+/**
+ * Class HealthController
+ *
+ * API for checking status of server.
+ */
 class HealthController extends Controller
 {
+    /**
+     * Simple server health check.
+     *
+     * @return array server status
+     */
     public function actionCheck(): array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

@@ -9,6 +9,13 @@ use yii\helpers\ArrayHelper;
 use yii\rest\Serializer;
 use yii\web\Response;
 
+/**
+ * Class Controller
+ *
+ * Extends yii2's Controller class to add functionality.
+ *
+ * - Adds Cors handling
+ */
 class Controller extends \yii\rest\Controller
 {
     /**
@@ -18,6 +25,10 @@ class Controller extends \yii\rest\Controller
         'class' => Serializer::class,
         'collectionEnvelope' => 'items',
     ];
+
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors(): array
     {
         return [

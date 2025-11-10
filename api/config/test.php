@@ -1,4 +1,8 @@
 <?php
+
+use yii\symfonymailer\Message;
+use app\models\User;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/test_db.php';
 
@@ -20,26 +24,24 @@ return [
             'viewPath' => '@app/mail',
             // send all mails to a file by default.
             'useFileTransport' => true,
-            'messageClass' => 'yii\symfonymailer\Message'
-        ],
-        'assetManager' => [
-            'basePath' => __DIR__ . '/../web/assets',
+            'messageClass' => Message::class
         ],
         'urlManager' => [
             'showScriptName' => true,
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => User::class,
         ],
         'request' => [
             'cookieValidationKey' => 'test',
             'enableCsrfValidation' => false,
-            // but if you absolutely need it set cookie domain to localhost
+
             /*
-            'csrfCookie' => [
+                'csrfCookie' => [
                 'domain' => 'localhost',
-            ],
+                ],
             */
+
         ],
     ],
     'params' => $params,

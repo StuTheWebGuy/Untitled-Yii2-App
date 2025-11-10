@@ -1,5 +1,6 @@
 <?php
 
+namespace tests\support;
 
 /**
  * Inherited Methods
@@ -15,12 +16,8 @@
  * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
  *
  * @SuppressWarnings(PHPMD)
-*/
-class UnitTester extends \Codeception\Actor
+ */
+class FunctionalTester extends \Codeception\Actor
 {
-    use _generated\UnitTesterActions;
-
-   /**
-    * Define custom actions here
-    */
+    use _generated\FunctionalTesterActions;
 }
