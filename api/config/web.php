@@ -1,5 +1,7 @@
 <?php
 
+use yii\web\JsonParser;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -18,6 +20,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'my-secret-key',
+            'parsers' => ['application/json' => JsonParser::class],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
