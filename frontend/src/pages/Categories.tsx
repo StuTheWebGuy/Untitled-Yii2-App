@@ -14,7 +14,7 @@ export default function Categories() {
       body: JSON.stringify({
         userId: userId,
         name: `Untitled Category ${userTeamCount}`,
-        created_at: new Date(),
+        created_at: '2007-09-24 00:00:00',
       }),
     })
       .then(res => res.json())
