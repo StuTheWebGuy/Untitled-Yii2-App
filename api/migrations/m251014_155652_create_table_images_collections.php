@@ -2,7 +2,6 @@
 
 use yii\db\Migration;
 
-
 /**
  * Handles the creation of table `{{%images_collection}}`
  *
