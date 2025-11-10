@@ -3,6 +3,7 @@
 namespace app\rest;
 
 use yii\filters\Cors;
+use yii\helpers\ArrayHelper;
 use yii\rest\Serializer;
 
 class ActiveController extends \yii\rest\ActiveController
@@ -16,6 +17,6 @@ class ActiveController extends \yii\rest\ActiveController
     ];
     public function behaviors(): array
     {
-        return ['cors' => ['class' => Cors::class]];
+        return ArrayHelper::merge(parent::behaviors(), ['cors' => ['class' => Cors::class]]);
     }
 }
