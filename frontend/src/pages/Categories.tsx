@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react'
+
 export default function Categories() {
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>([])
   const BASE_URL = 'http://127.0.0.1:8000'
   async function createNewCategory() {
     const userId: number = 1 // (placeholder) todo: get userId of currently logged in user / localstorage
@@ -24,9 +27,21 @@ export default function Categories() {
       .catch(err => console.log(err))
   }
 
+  async function loadCategories() {
+    await fetch(`${BASE_URL}/categories/index`)
+  }
+
+  useEffect(() => {
+    loadCategories().then()
+  }, [])
+
   return (
     <div>
-      <button onClick={createNewCategory}>Create a Category</button>
+      <div>
+        <button onClick={createNewCategory}>Create a Category</button>
+      </div>
+
+      <div>{categories}</div>
     </div>
   )
 }
