@@ -33,7 +33,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => User::class,
-            'enableAutoLogin' => true,
+            'loginUrl' => null,
         ],
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
