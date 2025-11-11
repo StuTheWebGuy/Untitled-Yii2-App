@@ -1,24 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\models;
 
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
- * Class User
+ * Model class for the `{{%users}}` table.
+ *
+ * Represents an authenticable user of the application, who can login and logout
+ * and who creates and owns related records in the database.
+ *
+ * @property int $id
+ * @property string $username
+ * @property string $password
+ * @property string $auth_key
+ * @property string|null $email
+ * @property string|null $created_at
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
-    /**
-     * @var mixed|null
-     */
-    private static mixed $users;
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
     /**
      * @inheritdoc
      */
@@ -32,7 +35,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return static::findOne($id);
     }
 
     /**
@@ -40,30 +43,31 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return static::findOne(['auth_key' => $token]);
     }
 
     /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
+     * {@inheritdoc}
      */
-    public static function findByUsername($username)
+    public function behaviors(): array
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
+        return [
+            'timestamp' => ['class' => TimestampBehavior::class],
+        ];
+    }
 
-        return null;
+    /**
+     * {@inheritdoc}
+     */
+    public function rules(): array
+    {
+        return [
+            [['username', 'email'], 'trim'],
+            [['username', 'email', '!password', '!auth_key'], 'required'],
+            [['username', 'email', '!password', '!auth_key'], 'string', 'max' => 255],
+            [['email'], 'email'],
+            [['username', 'email'], 'unique'],
+        ];
     }
 
     /**
@@ -79,7 +83,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+        return $this->auth_key;
     }
 
     /**
@@ -87,17 +91,6 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
-    }
-
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return boolean if password provided is valid for current user
-     */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
+        return $this->auth_key === $authKey;
     }
 }
