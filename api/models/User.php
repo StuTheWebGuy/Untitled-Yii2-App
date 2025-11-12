@@ -19,7 +19,8 @@ use yii\db\ActiveRecord;
  * @property string $password
  * @property string $auth_key
  * @property string|null $email
- * @property string|null $created_at
+ * @property int|null $created_at
+ * @property int|null $updated_at
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -74,7 +75,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['username', 'email'], 'trim'],
-            [['username', 'email', '!password', '!auth_key'], 'required'],
+            [['email', 'username'], EmptyStringValidator::class],
+            'passwordRequired' => [['!password'], 'required'],
+            [['username', '!auth_key'], 'required'],
             [['username', 'email', '!password', '!auth_key'], 'string', 'max' => 255],
             [['email'], 'email'],
             [['username', 'email'], 'unique'],
