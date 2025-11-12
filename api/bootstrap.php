@@ -30,4 +30,10 @@ function env(string $key): mixed {
 defined('YII_DEBUG') or define('YII_DEBUG', filter_var(env('YII_DEBUG') ?? false, FILTER_VALIDATE_BOOLEAN));
 defined('YII_ENV') or define('YII_ENV', env('YII_ENV') ?? 'prod');
 
+if (YII_ENV === 'dev') {
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+}
+
 require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
