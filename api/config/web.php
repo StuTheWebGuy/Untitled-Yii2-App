@@ -26,6 +26,8 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'my-secret-key',
+            'enableCsrfCookie' => false,
+            'enableCsrfValidation' => false,
             'parsers' => ['application/json' => JsonParser::class],
         ],
         'cache' => [
@@ -46,7 +48,18 @@ $config = [
             'targets' => [
                 [
                     'class' => FileTarget::class,
+                    'logFile' => '@runtime/logs/error.log',
                     'levels' => ['error', 'warning'],
+                ],
+                [
+                    'class' => FileTarget::class,
+                    'logFile' => '@runtime/logs/info.log',
+                    'levels' => ['info'],
+                ],
+                [
+                    'class' => FileTarget::class,
+                    'logFile' => '@runtime/logs/debug.log',
+                    'levels' => ['trace'],
                 ],
             ],
         ],
