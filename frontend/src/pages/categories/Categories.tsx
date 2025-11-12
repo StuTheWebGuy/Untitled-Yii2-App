@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Categories() {
-  const [categories, setCategories] = useState<{ id: number; name: string }[]>([])
+  const [categories, setCategories] = useState<{ id: number; name: string; button: any }[]>([])
   const BASE_URL = 'http://127.0.0.1:8000'
   async function createNewCategory() {
     const userId: number = 1 // (placeholder) todo: get userId of currently logged in user / localstorage
@@ -15,7 +16,7 @@ export default function Categories() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userId: userId,
+        user_id: userId,
         name: `Untitled Category ${userTeamCount}`,
         created_at: '2007-09-24 00:00:00',
       }),
@@ -25,10 +26,24 @@ export default function Categories() {
         console.log(data)
       })
       .catch(err => console.log(err))
+
+    await loadCategories()
   }
 
   async function loadCategories() {
-    await fetch(`${BASE_URL}/categories/index`)
+    const json = await (await fetch(`${BASE_URL}/categories/index`)).json()
+    const category = json.items.map((item: any) => {
+      return {
+        id: item.id,
+        name: item.name,
+        button: (
+          <button>
+            <Link to={`/Category/${item.id}`}>{item.name}</Link>
+          </button>
+        ),
+      }
+    })
+    setCategories(category)
   }
 
   useEffect(() => {
@@ -41,7 +56,7 @@ export default function Categories() {
         <button onClick={createNewCategory}>Create a Category</button>
       </div>
 
-      <div>{categories}</div>
+      <div>{categories.map(category => category.button) ?? [<button>+</button>]}</div>
     </div>
   )
 }
