@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace app\models\forms;
 
 use app\models\User;
+use Yii;
 use yii\base\Model;
 
 /**
@@ -57,7 +58,7 @@ class LoginForm extends Model
         if (!$isExists) {
             $this->addError(
                 $attribute,
-                'Username and password don\'t match',
+                YII_DEBUG ? 'Username doesn\'t match a user in the database.' : 'Username and password don\'t match',
             );
         }
     }
@@ -75,14 +76,15 @@ class LoginForm extends Model
             return;
         }
 
-        $isMatches = User::find()
+        $user = User::find()
             ->where([
                 'username' => $this->username,
-                'password' => $this->$attribute,
             ])
-            ->exists();
+            ->one();
 
-        if (!$isMatches) {
+        $isPasswordCorrect = Yii::$app->security->validatePassword($this->$attribute, $user->password);
+
+        if (!$isPasswordCorrect) {
             $this->addError(
                 $attribute,
                 YII_DEBUG ? 'Password doesn\'t match the specified user in the database.' : 'Username and password don\'t match',
