@@ -15,12 +15,12 @@ class LoginForm extends Model
     /**
      * @var string|null The user's username.
      */
-    public ?string $username;
+    public ?string $username = null;
 
     /**
      * @var string|null The user's password.
      */
-    public ?string $password;
+    public ?string $password = null;
 
     /**
      * {@inheritdoc}
@@ -85,7 +85,7 @@ class LoginForm extends Model
         if (!$isMatches) {
             $this->addError(
                 $attribute,
-                'Username and password don\'t match',
+                YII_DEBUG ? 'Password doesn\'t match the specified user in the database.' : 'Username and password don\'t match',
             );
         }
     }
