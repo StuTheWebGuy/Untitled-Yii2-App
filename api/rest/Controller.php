@@ -2,6 +2,9 @@
 
 namespace app\rest;
 
+use app\filters\auth\CookieAuth;
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\QueryParamAuth;
 use yii\filters\ContentNegotiator;
 use yii\filters\Cors;
 use yii\filters\VerbFilter;
@@ -42,17 +45,24 @@ class Controller extends \yii\rest\Controller
                 'class' => Cors::class,
                 'cors' => [
                     'Origin' => ['*'],
-                    'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS', 'DELETE', 'POST', 'PUT'],
+                    'Access-Control-Request-Method' => [
+                        'GET', 'HEAD', 'OPTIONS',
+                        'DELETE', 'POST', 'PUT'
+                    ],
                     'Access-Control-Request-Headers' => ['*'],
-                    // 'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Allow-Credentials' => true,
                     'Access-Control-Max-Age' => 3600,
                     'Access-Control-Allow-Headers' => ['*'],
                     'Access-Control-Allow-Origin' => ['*'],
                 ]
             ],
-            // 'authenticator' => [
-            //     'class' => CompositeAuth::className(),
-            // ],
+            'authenticator' => [
+                'class' => CompositeAuth::class,
+                'authMethods' => [
+                    QueryParamAuth::class,
+                    CookieAuth::class
+                ]
+            ],
             'verbFilter' => [
                 'class' => VerbFilter::class,
                 'actions' => $this->verbs(),
