@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Team;
 use app\rest\ActiveController;
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * Class TeamsController
@@ -29,5 +30,16 @@ class TeamsController extends ActiveController
     public function actionUsersCount(int $userId): int
     {
         return $this->modelClass::find()->where(['user_id' => $userId])->count();
+    }
+
+    /**
+     * Returns the teams within a category
+     *
+     * @param int $categoryId
+     * @return array
+     */
+    public function actionCategoryView(int $categoryId): array
+    {
+        return $this->modelClass::find()->where(['category_id' => $categoryId])->all();
     }
 }
