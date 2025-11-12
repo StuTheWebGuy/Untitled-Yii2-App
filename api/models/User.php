@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace app\models;
 
+use app\validators\EmptyStringValidator;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
  * Model class for the `{{%users}}` table.
  *
- * Represents an authenticable user of the application, who can login and logout
+ * Represents an authenticate-able user of the application, who can login and logout
  * and who creates and owns related records in the database.
  *
  * @property int $id
@@ -33,7 +34,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($id)
+    public static function findIdentity($id): User|\yii\web\IdentityInterface|null
     {
         return static::findOne($id);
     }
@@ -41,7 +42,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public static function findIdentityByAccessToken($token, $type = null): User|\yii\web\IdentityInterface|null
     {
         return static::findOne(['auth_key' => $token]);
     }
@@ -53,6 +54,16 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'timestamp' => ['class' => TimestampBehavior::class],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fields(): array
+    {
+        return [
+            'id'
         ];
     }
 
@@ -73,7 +84,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function getId()
+    public function getId(): int|string
     {
         return $this->id;
     }
@@ -81,7 +92,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function getAuthKey()
+    public function getAuthKey(): ?string
     {
         return $this->auth_key;
     }
@@ -89,7 +100,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): ?bool
     {
         return $this->auth_key === $authKey;
     }
