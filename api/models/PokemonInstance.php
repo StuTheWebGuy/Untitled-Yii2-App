@@ -25,4 +25,14 @@ class PokemonInstance extends ActiveRecord
     {
         return '{{%pokemon_instances}}';
     }
+
+    public function rules(): array
+    {
+        return [
+            [
+                ['team_id', 'box_id', 'created_at', 'pokemon_species_id', 'format_id', 'custom_name'],
+                'safe'
+            ],
+        ];
+    }
 }
