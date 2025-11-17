@@ -44,7 +44,7 @@ class Controller extends \yii\rest\Controller
             'cors' => [
                 'class' => Cors::class,
                 'cors' => [
-                    'Origin' => ['*'],
+                    'Origin' => ['http://localhost:5173'],
                     'Access-Control-Request-Method' => [
                         'GET', 'HEAD', 'OPTIONS',
                         'DELETE', 'POST', 'PUT'
