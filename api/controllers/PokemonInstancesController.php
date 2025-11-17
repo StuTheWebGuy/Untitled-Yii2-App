@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\PokemonInstance;
-use yii\rest\ActiveController;
+use app\rest\ActiveController;
 
 /**
  * Class PokemonInstancesController
@@ -12,7 +12,7 @@ use yii\rest\ActiveController;
  *
  * @see PokemonInstance
  */
-class PokemonInstancesController extends activeController
+class PokemonInstancesController extends ActiveController
 {
     /**
      * @var string The model class associated with this controller.
