@@ -3,6 +3,9 @@ export default function Home() {
   async function loginDev() {
     await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
       body: JSON.stringify({
         username: 'test',
         password: 'test',
