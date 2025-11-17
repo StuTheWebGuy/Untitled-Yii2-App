@@ -20,24 +20,11 @@ class m251020_093000_create_table_pokemon_species extends Migration
     {
         $this->createTable('{{%pokemon_species}}', [
             'id' => $this->primaryKey(),
-            'images_collection_id' => $this->integer(),
 
+            'image' => $this->string(255)->defaultValue(''), // todo: add a default image
             'name' => $this->string(255)->notNull(),
             'url' => $this->string(255)->notNull()->unique(),
         ]);
-
-        /**
-         * images_collection_id FK
-         */
-        $this->addForeignKey(
-            'fk-pokemon_species-images_collection_id',
-            '{{%pokemon_species}}',
-            'images_collection_id',
-            '{{%images_collections}}',
-            'id',
-            'CASCADE',
-            'CASCADE'
-        );
     }
 
     /**
@@ -45,7 +32,6 @@ class m251020_093000_create_table_pokemon_species extends Migration
      */
     public function safeDown(): void
     {
-        $this->dropForeignKey('fk-pokemon_species-images_collection_id', '{{%pokemon_species}}');
         $this->dropTable('{{%pokemon_species}}');
     }
 }

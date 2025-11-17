@@ -13,6 +13,7 @@ use yii\db\ActiveRecord;
  * @property int $images_collection_id
  * @property string $name
  * @property string $url
+ * @property string image
  */
 class PokemonSpecies extends ActiveRecord
 {
