@@ -41,10 +41,13 @@ class ActiveController extends \yii\rest\ActiveController
             'cors' => [
                 'class' => Cors::class,
                 'cors' => [
-                    'Origin' => ['*'],
-                    'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS', 'DELETE', 'POST', 'PUT'],
+                    'Origin' => ['http://localhost:5173'],
+                    'Access-Control-Request-Method' => [
+                        'GET', 'HEAD', 'OPTIONS',
+                        'DELETE', 'POST', 'PUT'
+                    ],
                     'Access-Control-Request-Headers' => ['*'],
-                    // 'Access-Control-Allow-Credentials' => true,
+                     'Access-Control-Allow-Credentials' => true,
                     'Access-Control-Max-Age' => 3600,
                     'Access-Control-Allow-Headers' => ['*'],
                     'Access-Control-Allow-Origin' => ['*'],
