@@ -46,8 +46,13 @@ class PokemonImportController extends Controller
             foreach ($data['results'] as $pokemon) {
                 try {
                     $species = new PokemonSpecies();
+                    $url = $pokemon['url'];
+                    $imageId = basename($url);
+
                     $species->name = $pokemon['name'];
-                    $species->url = $pokemon['url'];
+                    $species->url = $url;
+                    $species->image =  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' . $imageId . '.svg';
+
                     if (!$species->save()) {
                         $this->stderr($pokemon['name'] . " (FAILED): " . json_encode($species->errors, JSON_THROW_ON_ERROR) . "\n");
                     } else {
