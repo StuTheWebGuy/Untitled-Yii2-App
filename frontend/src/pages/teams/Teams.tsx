@@ -28,9 +28,6 @@ export default function Teams() {
 
   async function createNewTeam() {
     const userId: number = 1 // (placeholder) todo: get userId of currently logged in user / localstorage
-    const userTeamCount: number = await (
-      await fetch(`${BASE_URL}/categories/teams-count?categoryId=${categoryId}`)
-    ).json()
 
     await fetch(`${BASE_URL}/teams/create`, {
       method: 'POST',
@@ -40,7 +37,7 @@ export default function Teams() {
       body: JSON.stringify({
         category_id: categoryId,
         user_id: userId,
-        name: `Untitled Team ${userTeamCount}`,
+        name: '',
         // created_at: '2007-09-24 00:00:00',
       }),
     })

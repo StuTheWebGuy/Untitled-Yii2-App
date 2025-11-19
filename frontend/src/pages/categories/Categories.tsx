@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import CategoryMenu from './CategoryMenu.tsx'
+import { createPortal } from 'react-dom'
 
 export default function Categories() {
   const [categories, setCategories] = useState<{ button: any }[]>([])
+  const [isCategoryMenuVisible, setIsCategoryMenuVisible] = useState<boolean>(false)
+  const [categoryMenuPosition, setCategoryMenuPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  })
   const BASE_URL = 'http://127.0.0.1:8000'
+  const portalRoot = document.getElementById('portal-root')
+
   async function createNewCategory() {
     const userId: number = 1 // (placeholder) todo: get userId of currently logged in user / localstorage
-    const userCategoryCount: number = await (
-      await fetch(`${BASE_URL}/categories/users-count?userId=${userId}`)
-    ).json()
 
     await fetch(`${BASE_URL}/categories/create`, {
       method: 'POST',
@@ -17,8 +23,8 @@ export default function Categories() {
       },
       body: JSON.stringify({
         user_id: userId,
-        name: `Untitled Category ${userCategoryCount}`,
-        created_at: '2007-09-24 00:00:00',
+        name: '', // let server allocate a default name
+        created_at: '2007-09-24 00:00:00', // todo: get current date in this format
       }),
     })
       .then(res => res.json())
