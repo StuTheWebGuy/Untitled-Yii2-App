@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use app\validators\BlankNewItemValidator;
 
 /**
  * Class Category
@@ -14,7 +14,7 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property string $created_at
  */
-class Category extends ActiveRecord
+class Category extends \app\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -22,6 +22,14 @@ class Category extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%categories}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableNameSingular(): string
+    {
+        return 'category';
     }
 
     /**

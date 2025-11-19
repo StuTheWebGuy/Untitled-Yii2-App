@@ -2,7 +2,8 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use app\db\ActiveRecord;
+use app\validators\BlankNewItemValidator;
 
 /**
  * Class Team
@@ -21,6 +22,14 @@ class Team extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%teams}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableNameSingular(): string
+    {
+        return 'team';
     }
 
     /**

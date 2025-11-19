@@ -2,7 +2,8 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use app\db\ActiveRecord;
+use app\validators\BlankNewItemValidator;
 
 /**
  * Class Box
@@ -21,5 +22,13 @@ class Box extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%boxes}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableNameSingular(): string
+    {
+        return 'box';
     }
 }

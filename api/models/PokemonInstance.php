@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use app\db\ActiveRecord;
 
 /**
  * Class PokemonInstances
@@ -26,6 +26,17 @@ class PokemonInstance extends ActiveRecord
         return '{{%pokemon_instances}}';
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableNameSingular(): string
+    {
+        return 'pokemon instance';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function rules(): array
     {
         return [

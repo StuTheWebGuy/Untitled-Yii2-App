@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use app\db\ActiveRecord;
 
 /**
  * Class PokemonSpecies
@@ -23,6 +23,14 @@ class PokemonSpecies extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%pokemon_species}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableNameSingular(): string
+    {
+        return 'pokemon species';
     }
 
     // todo: add validation

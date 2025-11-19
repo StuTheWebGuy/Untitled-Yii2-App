@@ -6,7 +6,7 @@ namespace app\models;
 
 use app\validators\EmptyStringValidator;
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
+use app\db\ActiveRecord;
 
 /**
  * Model class for the `{{%users}}` table.
@@ -30,6 +30,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public static function tableName(): string
     {
         return '{{%users}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableNameSingular(): string
+    {
+        return 'user';
     }
 
     /**

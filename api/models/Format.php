@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use app\db\ActiveRecord;
 
 /**
  * Class Format
@@ -23,5 +23,13 @@ class Format extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%formats}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableNameSingular(): string
+    {
+        return 'format';
     }
 }
