@@ -21,6 +21,8 @@ class m251016_111854_create_table_formats extends Migration
             'abbreviation' => $this->string(),
             'max_generation' => $this->integer(),
             'min_generation' => $this->integer()->notNull(),
+            'created_at' => $this->bigInteger()->notNull(),
+            'updated_at' => $this->bigInteger()->notNull(),
         ]);
     }
 

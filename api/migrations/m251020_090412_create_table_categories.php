@@ -20,6 +20,7 @@ class m251020_090412_create_table_categories extends Migration
 
             'name' => $this->string(255)->notNull(),
             'created_at' => $this->bigInteger()->notNull(),
+            'updated_at' => $this->bigInteger()->notNull(),
         ]);
 
         /**

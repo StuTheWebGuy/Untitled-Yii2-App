@@ -24,6 +24,8 @@ class m251020_093000_create_table_pokemon_species extends Migration
             'image' => $this->string(255)->defaultValue(''), // todo: add a default image
             'name' => $this->string(255)->notNull(),
             'url' => $this->string(255)->notNull()->unique(),
+            'created_at' => $this->bigInteger()->notNull(),
+            'updated_at' => $this->bigInteger()->notNull(),
         ]);
     }
 

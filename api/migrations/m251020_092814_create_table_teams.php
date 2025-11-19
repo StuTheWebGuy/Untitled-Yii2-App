@@ -20,6 +20,8 @@ class m251020_092814_create_table_teams extends Migration
             'user_id' => $this->integer(),
 
             'name' => $this->string(255)->notNull(),
+            'created_at' => $this->bigInteger()->notNull(),
+            'updated_at' => $this->bigInteger()->notNull(),
         ]);
 
         /**

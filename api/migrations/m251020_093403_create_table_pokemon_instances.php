@@ -24,6 +24,8 @@ class m251020_093403_create_table_pokemon_instances extends Migration
             'format_id' => $this->integer(),
 
             'custom_name' => $this->string(255),
+            'created_at' => $this->bigInteger()->notNull(),
+            'updated_at' => $this->bigInteger()->notNull(),
         ]);
 
         /**

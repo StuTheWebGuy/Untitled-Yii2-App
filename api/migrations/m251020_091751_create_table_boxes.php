@@ -20,6 +20,8 @@ class m251020_091751_create_table_boxes extends Migration
             'user_id' => $this->integer(),
 
             'name' => $this->string(255)->notNull(),
+            'created_at' => $this->bigInteger()->notNull(),
+            'updated_at' => $this->bigInteger()->notNull(),
         ]);
 
         /**
