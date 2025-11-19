@@ -27,3 +27,12 @@ function App() {
 }
 
 export default App
+/* todo:
+    - add caching layer to categories, teams, etc. index calls
+    - make full login page wireframe
+    - fetch moves for pokemon on team page
+    - fix rest of pages to use the new default naming middleware that categories now uses to reduce api calls
+    - add menu pages for teams, boxes, etc.
+    - start abstracting out repeated api calls and functions to reduce code duplication
+    - add a styling palette and start to beautify
+*/
