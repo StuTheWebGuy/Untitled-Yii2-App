@@ -31,4 +31,16 @@ class Box extends ActiveRecord
     {
         return 'box';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules(): array
+    {
+        return [
+            [['category_id', 'user_id', 'name', 'created_at'], 'safe'],
+            [['name'], 'trim'],
+            [['name'], BlankNewItemValidator::class],
+        ];
+    }
 }

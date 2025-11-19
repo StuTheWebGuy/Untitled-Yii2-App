@@ -40,10 +40,8 @@ class PokemonInstance extends ActiveRecord
     public function rules(): array
     {
         return [
-            [
-                ['team_id', 'box_id', 'created_at', 'pokemon_species_id', 'format_id', 'custom_name'],
-                'safe'
-            ],
+            [['team_id', 'box_id', 'created_at', 'pokemon_species_id', 'format_id', 'custom_name'], 'safe'],
+            // todo: validate for box_id XOR team_id
         ];
     }
 }

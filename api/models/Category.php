@@ -38,10 +38,9 @@ class Category extends \app\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [
-                ['user_id', 'name', 'created_at'],
-                'safe'
-            ],
+            [['user_id', 'name', 'created_at'], 'safe'],
+            [['name'], 'trim'],
+            [['name'], BlankNewItemValidator::class],
         ];
     }
 }

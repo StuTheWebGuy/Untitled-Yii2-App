@@ -38,10 +38,9 @@ class Team extends ActiveRecord
     public function rules(): array
     {
         return [
-            [
-                ['user_id', 'name', 'created_at', 'category_id'],
-                'safe'
-            ],
+            [['user_id', 'name', 'created_at', 'category_id'], 'safe'],
+            [['name'], 'trim'],
+            [['name'], BlankNewItemValidator::class],
         ];
     }
 }
