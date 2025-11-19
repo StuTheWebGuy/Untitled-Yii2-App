@@ -50,12 +50,29 @@ export default function Categories() {
     setCategories(category)
   }
 
+  const showCategoryMenu = (c: any) => {
+    c.preventDefault()
+    setIsCategoryMenuVisible(true)
+    setCategoryMenuPosition({ x: c.pageX, y: c.pageY })
+  }
+
+  const hideCategoryMenu = (c: any) => {
+    c.preventDefault()
+    setIsCategoryMenuVisible(false)
+  }
+
   useEffect(() => {
     loadCategories().then()
   }, [])
 
   return (
-    <div>
+    <div onClick={hideCategoryMenu}>
+      <button onContextMenu={showCategoryMenu}>test</button>
+      {isCategoryMenuVisible &&
+        createPortal(
+          <CategoryMenu x={categoryMenuPosition.x} y={categoryMenuPosition.y} />,
+          portalRoot ?? document.body
+        )}
       <div>
         {categories.map(category => category.button)}
         <button onClick={createNewCategory}>+</button>
